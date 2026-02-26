@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { hasInviteTokenInHash } from "@/lib/inviteDetection";
+import RemixOverlay from "@/components/RemixOverlay";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -219,6 +220,8 @@ const Auth = () => {
   }
 
   return (
+    <>
+    <RemixOverlay />
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-background via-background to-accent/5 p-4">
       <Card className="w-full max-w-md border-border/50 shadow-lg">
         <CardHeader className="text-center space-y-4">
@@ -476,6 +479,7 @@ const Auth = () => {
       </Card>
 
     </div>
+    </>
   );
 };
 
