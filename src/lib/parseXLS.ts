@@ -1,27 +1,47 @@
-// @ts-ignore - read-excel-file types
-import readXlsxFile, { Row } from 'read-excel-file';
+import ExcelJS from 'exceljs';
 
 export interface SolidesRow {
   [key: string]: string | undefined;
 }
 
 export async function parseXLSFile(file: File): Promise<SolidesRow[]> {
-  const rows: Row[] = await readXlsxFile(file);
+  const arrayBuffer = await file.arrayBuffer();
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.load(arrayBuffer);
 
-  if (rows.length < 2) {
+  const worksheet = workbook.worksheets[0];
+  if (!worksheet || worksheet.rowCount < 2) {
     return [];
   }
 
   // First row is headers
-  const headers: string[] = rows[0].map((cell: unknown) => String(cell ?? ''));
-
-  return rows.slice(1).map((row: Row) => {
-    const obj: SolidesRow = {};
-    headers.forEach((header: string, idx: number) => {
-      obj[header] = row[idx] != null ? String(row[idx]) : '';
-    });
-    return obj;
+  const headerRow = worksheet.getRow(1);
+  const headers: string[] = [];
+  headerRow.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+    headers[colNumber - 1] = String(cell.value ?? '');
   });
+
+  const results: SolidesRow[] = [];
+  for (let i = 2; i <= worksheet.rowCount; i++) {
+    const row = worksheet.getRow(i);
+    const obj: SolidesRow = {};
+    let hasData = false;
+
+    headers.forEach((header, idx) => {
+      const cell = row.getCell(idx + 1);
+      const value = cell.value;
+      if (value != null && String(value).trim() !== '') {
+        hasData = true;
+      }
+      obj[header] = value != null ? String(value) : '';
+    });
+
+    if (hasData) {
+      results.push(obj);
+    }
+  }
+
+  return results;
 }
 
 // Parse date from DD/MM/YYYY to YYYY-MM-DD
