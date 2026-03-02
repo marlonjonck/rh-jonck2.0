@@ -29,7 +29,7 @@ import { useUserRole } from "@/hooks/useUserRole";
 import { useUserOrganizations } from "@/hooks/useUserOrganizations";
 import {
   Package,
-  FolderGit2,
+  
   Users,
   Building2,
   Briefcase,

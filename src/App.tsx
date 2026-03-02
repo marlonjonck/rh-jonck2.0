@@ -42,8 +42,6 @@ const Terminations = lazy(() => import("./pages/Terminations"));
 const TimeOff = lazy(() => import("./pages/TimeOff"));
 const TalentBank = lazy(() => import("./pages/TalentBank"));
 const TalentBankApplication = lazy(() => import("./pages/TalentBankApplication"));
-const Projects = lazy(() => import("./pages/Projects"));
-const ProjectChangelog = lazy(() => import("./pages/ProjectChangelog"));
 const Vagas = lazy(() => import("./pages/Vagas"));
 const JobDetailPage = lazy(() => import("./pages/JobDetailPage"));
 const JobFormPage = lazy(() => import("./pages/JobFormPage"));
@@ -164,8 +162,6 @@ const App = () => (
             <Route path="/terminations" element={<Terminations />} />
             <Route path="/time-off" element={<TimeOff />} />
             <Route path="/talent-bank" element={<TalentBank />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:owner/:repo" element={<ProjectChangelog />} />
             <Route path="/vagas" element={<Vagas />} />
             <Route path="/vagas/:id" element={<JobDetailPage />} />
             <Route path="/feedbacks" element={<PeopleRoute><Feedbacks /></PeopleRoute>} />
