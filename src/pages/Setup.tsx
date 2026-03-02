@@ -25,7 +25,7 @@ export default function Setup() {
 
   // Dialog states
   const [showEmployeeDialog, setShowEmployeeDialog] = useState(false);
-  const [integrationProvider, setIntegrationProvider] = useState<"anthropic" | "fireflies" | "resend" | null>(null);
+  const [integrationProvider, setIntegrationProvider] = useState<"anthropic" | "resend" | null>(null);
 
   const currentCategory = categories.find((c) => c.id === activeCategory);
 
@@ -50,9 +50,6 @@ export default function Setup() {
         break;
       case "anthropic":
         setIntegrationProvider("anthropic");
-        break;
-      case "fireflies":
-        setIntegrationProvider("fireflies");
         break;
       default:
         handleStepToggle(stepId);

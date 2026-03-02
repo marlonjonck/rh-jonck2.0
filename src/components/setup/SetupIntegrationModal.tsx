@@ -6,7 +6,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { IntegrationCard } from "@/components/IntegrationCard";
-import { Bot, Mic, Mail } from "lucide-react";
+import { Bot, Mail } from "lucide-react";
 import { useOrganizationSettings } from "@/hooks/useOrganizationSettings";
 import {
   useOrganizationIntegrations,
@@ -18,7 +18,7 @@ import {
 interface SetupIntegrationModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  provider: "anthropic" | "fireflies" | "resend";
+  provider: "anthropic" | "resend";
 }
 
 const PROVIDER_META = {
@@ -28,14 +28,6 @@ const PROVIDER_META = {
     placeholder: "sk-ant-...",
     icon: <Bot className="size-6 text-orange-500" />,
     helpUrl: "https://console.anthropic.com/settings/keys",
-    helpText: "Obter API Key",
-  },
-  fireflies: {
-    name: "Fireflies.ai",
-    description: "Transcrição automática de entrevistas",
-    placeholder: "Sua API Key do Fireflies",
-    icon: <Mic className="size-6 text-purple-500" />,
-    helpUrl: "https://app.fireflies.ai/integrations/custom/fireflies",
     helpText: "Obter API Key",
   },
   resend: {
