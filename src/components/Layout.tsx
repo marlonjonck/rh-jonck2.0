@@ -10,7 +10,6 @@ import { useViewAs } from "@/contexts/ViewAsContext";
 import { useLocation, Link } from "react-router-dom";
 import { 
   Package, 
-  FolderGit2, 
   Users, 
   Building2, 
   Briefcase, 
@@ -50,7 +49,7 @@ interface PageInfo {
 
 const routeTitles: Record<string, PageInfo> = {
   "/": { title: "Inventário", icon: Package },
-  "/projects": { title: "Projetos", icon: FolderGit2 },
+  
   "/people-analytics": { title: "Dashboard", icon: LayoutDashboard },
   "/employees": { title: "Colaboradores", icon: Users },
   "/departments": { title: "Departamentos", icon: Building2 },
@@ -76,7 +75,7 @@ const getPageInfo = (pathname: string): PageInfo => {
   if (pathname.startsWith("/employees/")) return { title: "Colaboradores", icon: Users };
   if (pathname.startsWith("/departments/")) return { title: "Departamentos", icon: Building2 };
   if (pathname.startsWith("/vagas/")) return { title: "Vagas", icon: ClipboardList };
-  if (pathname.startsWith("/projects/")) return { title: "Projetos", icon: FolderGit2 };
+  
   if (pathname.startsWith("/profiler")) return { title: "Profiler", icon: Brain };
   
   // Fallback

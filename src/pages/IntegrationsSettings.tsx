@@ -9,7 +9,7 @@ import {
 import { IntegrationCard } from "@/components/IntegrationCard";
 import { ResendEmailConfig } from "@/components/ResendEmailConfig";
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Plug, Shield, Bot, Mic, Github, Mail } from "lucide-react";
+import { RefreshCw, Plug, Shield, Bot, Mic, Mail } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Provider configuration
@@ -49,15 +49,6 @@ const PROVIDERS = [
     icon: <Bot className="h-5 w-5 text-primary" />,
     helpUrl: "https://platform.openai.com/api-keys",
     helpText: "Obter API key",
-  },
-  {
-    id: "github",
-    name: "GitHub",
-    description: "Acesso a repositórios para changelog e releases",
-    placeholder: "ghp_... ou github_pat_...",
-    icon: <Github className="h-5 w-5 text-primary" />,
-    helpUrl: "https://github.com/settings/tokens",
-    helpText: "Gerar token",
   },
 ];
 
