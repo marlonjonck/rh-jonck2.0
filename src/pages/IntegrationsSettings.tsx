@@ -9,7 +9,7 @@ import {
 import { IntegrationCard } from "@/components/IntegrationCard";
 import { ResendEmailConfig } from "@/components/ResendEmailConfig";
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Plug, Shield, Bot, Mic, Mail } from "lucide-react";
+import { RefreshCw, Plug, Shield, Bot, Mail } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 // Provider configuration
@@ -21,15 +21,6 @@ const PROVIDERS = [
     placeholder: "re_...",
     icon: <Mail className="h-5 w-5 text-primary" />,
     helpUrl: "https://resend.com/api-keys",
-    helpText: "Obter API key",
-  },
-  {
-    id: "fireflies",
-    name: "Fireflies.ai",
-    description: "Transcrição automática de reuniões e entrevistas",
-    placeholder: "Cole sua API key do Fireflies",
-    icon: <Mic className="h-5 w-5 text-primary" />,
-    helpUrl: "https://app.fireflies.ai/integrations/custom/fireflies",
     helpText: "Obter API key",
   },
   {

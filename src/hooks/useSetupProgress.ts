@@ -52,9 +52,6 @@ export function useSetupProgress(): SetupProgress {
     const hasAnthropic = integrations?.some(
       i => i.provider === "anthropic" && i.is_active
     ) ?? false;
-    const hasFireflies = integrations?.some(
-      i => i.provider === "fireflies" && i.is_active
-    ) ?? false;
 
     const categoriesData: SetupCategory[] = [
       {
@@ -105,14 +102,6 @@ export function useSetupProgress(): SetupProgress {
             title: "Conectar IA (Anthropic)",
             description: "Configure a API para análise de candidatos",
             isCompleted: hasAnthropic,
-            action: "modal",
-          },
-          {
-            id: "fireflies",
-            title: "Conectar Fireflies",
-            description: "Transcrição automática de entrevistas",
-            isCompleted: hasFireflies,
-            isOptional: true,
             action: "modal",
           },
         ],

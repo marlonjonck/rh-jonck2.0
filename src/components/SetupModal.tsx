@@ -46,7 +46,7 @@ export function SetupModal({ open, onOpenChange }: SetupModalProps) {
 
   // Dialog states
   const [showEmployeeDialog, setShowEmployeeDialog] = useState(false);
-  const [integrationProvider, setIntegrationProvider] = useState<"anthropic" | "fireflies" | null>(null);
+  const [integrationProvider, setIntegrationProvider] = useState<"anthropic" | "resend" | null>(null);
   const [showSkipConfirmation, setShowSkipConfirmation] = useState(false);
 
   const currentCategory = categories.find((c) => c.id === activeCategory);
@@ -70,9 +70,6 @@ export function SetupModal({ open, onOpenChange }: SetupModalProps) {
         break;
       case "anthropic":
         setIntegrationProvider("anthropic");
-        break;
-      case "fireflies":
-        setIntegrationProvider("fireflies");
         break;
       default:
         handleStepToggle(stepId);
