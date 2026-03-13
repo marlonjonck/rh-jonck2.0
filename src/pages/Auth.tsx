@@ -313,7 +313,8 @@ const Auth = () => {
               </Button>
             </form>
           ) : (
-            // Normal auth flow with tabs
+            // Normal auth flow
+            canSignUp ? (
             <Tabs value={activeTab} onValueChange={handleTabChange}>
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="login">Entrar</TabsTrigger>
