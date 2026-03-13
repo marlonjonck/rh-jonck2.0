@@ -3213,6 +3213,27 @@ export type Database = {
           },
         ]
       }
+      system_settings: {
+        Row: {
+          created_at: string
+          id: string
+          registration_enabled: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          registration_enabled?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          registration_enabled?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       time_balance: {
         Row: {
           balance_minutes: number
