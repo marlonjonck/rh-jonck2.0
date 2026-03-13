@@ -35,6 +35,7 @@ import {
   Plug,
   ChevronRight,
   Palette,
+  ShieldAlert,
 } from "lucide-react";
 import {
   useOrganizationSettings,
