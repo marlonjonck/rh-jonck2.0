@@ -8,8 +8,9 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { useSystemStatus } from "@/hooks/useSystemStatus";
+import { useRegistrationSettings } from "@/hooks/useRegistrationSettings";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, ShieldAlert } from "lucide-react";
 import { z } from "zod";
 
 
