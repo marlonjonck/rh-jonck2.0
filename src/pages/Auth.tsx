@@ -32,6 +32,7 @@ const signupSchema = z.object({
 const Auth = () => {
   const { user, loading, signInWithEmail, signUpWithEmail, signInWithGoogle } = useAuth();
   const { hasUsers, isLoading: isCheckingUsers } = useSystemStatus();
+  const { registrationEnabled, isLoading: isLoadingRegistration } = useRegistrationSettings();
   const navigate = useNavigate();
   const { toast } = useToast();
 
