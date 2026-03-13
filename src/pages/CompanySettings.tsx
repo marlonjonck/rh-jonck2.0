@@ -747,6 +747,38 @@ export default function CompanySettings() {
               </Button>
             </CardContent>
           </Card>
+
+          {/* Controle de Registro */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+                  <ShieldAlert className="size-5 text-destructive" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Controle de Registro</CardTitle>
+                  <CardDescription>Habilitar ou desabilitar novos registros de usuários</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm font-medium">Permitir novos registros</p>
+                  <p className="text-xs text-muted-foreground">
+                    {registrationEnabled
+                      ? "Novos usuários podem criar conta na plataforma."
+                      : "Novos registros estão bloqueados. Apenas login é permitido."}
+                  </p>
+                </div>
+                <Switch
+                  checked={registrationEnabled}
+                  onCheckedChange={toggleRegistration}
+                  disabled={isLoadingReg || isSavingReg}
+                />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </Layout>
