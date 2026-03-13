@@ -709,8 +709,8 @@ export default function CompanySettings() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground mb-4">
-                Gerencie API keys de serviços como Fireflies (análise de entrevistas), 
-                Anthropic/OpenAI (análise de candidatos) e outros.
+                Gerencie API keys de serviços como Anthropic (análise de candidatos), 
+                Resend (envio de emails) e outros.
               </p>
               <Button variant="outline" asChild>
                 <a href="/company-settings/integrations">
