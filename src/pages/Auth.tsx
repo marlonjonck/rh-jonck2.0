@@ -441,7 +441,54 @@ const Auth = () => {
                 </form>
               </TabsContent>
             </Tabs>
-          )}
+            ) : (
+              // Registration disabled - login only
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-muted text-muted-foreground text-sm">
+                  <ShieldAlert className="size-4 flex-shrink-0" />
+                  <span>Novos registros estão desabilitados. Apenas login.</span>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="login-only-email">Email</Label>
+                  <Input
+                    id="login-only-email"
+                    type="email"
+                    placeholder="seu@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isLoading}
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="login-only-password">Senha</Label>
+                  <Input
+                    id="login-only-password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
+                  />
+                  {errors.password && (
+                    <p className="text-sm text-destructive">{errors.password}</p>
+                  )}
+                </div>
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Entrando...
+                    </>
+                  ) : (
+                    "Entrar"
+                  )}
+                </Button>
+              </form>
+            )
+          }
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
