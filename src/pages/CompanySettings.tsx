@@ -35,6 +35,7 @@ import {
   Plug,
   ChevronRight,
   Palette,
+  ShieldAlert,
 } from "lucide-react";
 import {
   useOrganizationSettings,
@@ -47,11 +48,14 @@ import {
 } from "@/hooks/useOrganizationSettings";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useRegistrationSettings } from "@/hooks/useRegistrationSettings";
+import { Switch } from "@/components/ui/switch";
 
 export default function CompanySettings() {
   const { data: settings, isLoading } = useOrganizationSettings();
   const updateSettings = useUpdateOrganizationSettings();
   const { toast } = useToast();
+  const { registrationEnabled, isLoading: isLoadingReg, isSaving: isSavingReg, toggleRegistration } = useRegistrationSettings();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -705,8 +709,8 @@ export default function CompanySettings() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground mb-4">
-                Gerencie API keys de serviços como Fireflies (análise de entrevistas), 
-                Anthropic/OpenAI (análise de candidatos) e outros.
+                Gerencie API keys de serviços como Anthropic (análise de candidatos), 
+                Resend (envio de emails) e outros.
               </p>
               <Button variant="outline" asChild>
                 <a href="/company-settings/integrations">
@@ -741,6 +745,38 @@ export default function CompanySettings() {
                   <ChevronRight className="size-4 ml-2" />
                 </a>
               </Button>
+            </CardContent>
+          </Card>
+
+          {/* Controle de Registro */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+                  <ShieldAlert className="size-5 text-destructive" />
+                </div>
+                <div>
+                  <CardTitle className="text-lg">Controle de Registro</CardTitle>
+                  <CardDescription>Habilitar ou desabilitar novos registros de usuários</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <p className="text-sm font-medium">Permitir novos registros</p>
+                  <p className="text-xs text-muted-foreground">
+                    {registrationEnabled
+                      ? "Novos usuários podem criar conta na plataforma."
+                      : "Novos registros estão bloqueados. Apenas login é permitido."}
+                  </p>
+                </div>
+                <Switch
+                  checked={registrationEnabled}
+                  onCheckedChange={toggleRegistration}
+                  disabled={isLoadingReg || isSavingReg}
+                />
+              </div>
             </CardContent>
           </Card>
         </div>
