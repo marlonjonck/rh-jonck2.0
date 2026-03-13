@@ -55,6 +55,7 @@ export default function CompanySettings() {
   const { data: settings, isLoading } = useOrganizationSettings();
   const updateSettings = useUpdateOrganizationSettings();
   const { toast } = useToast();
+  const { registrationEnabled, isLoading: isLoadingReg, isSaving: isSavingReg, toggleRegistration } = useRegistrationSettings();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
 
