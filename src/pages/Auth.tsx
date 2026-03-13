@@ -188,13 +188,16 @@ const Auth = () => {
     }
   };
 
-  if (loading || isCheckingUsers) {
+  if (loading || isCheckingUsers || isLoadingRegistration) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-accent/5">
         <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
       </div>
     );
   }
+
+  // Determine if signup should be shown
+  const canSignUp = isFirstTimeSetup || registrationEnabled;
 
   if (adminCreated) {
     return (
