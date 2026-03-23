@@ -16,17 +16,15 @@ export const useUserOrganizations = (userId: string | undefined) => {
     queryFn: async () => {
       if (!userId) return [];
 
-      // Step 1: get organization_ids for this user
+      // Step 1: get organization membership via RPC (avoids PostgREST enum serialization issue)
       const { data: members, error: membersError } = await supabase
-        .from("organization_members")
-        .select("organization_id, is_owner, role")
-        .eq("user_id", userId);
+        .rpc("get_user_organizations", { p_user_id: userId });
 
       if (membersError) throw membersError;
       if (!members || members.length === 0) return [];
 
       // Step 2: get organization details
-      const orgIds = members.map((m) => m.organization_id);
+      const orgIds = members.map((m: any) => m.organization_id);
       const { data: orgs, error: orgsError } = await supabase
         .from("organizations")
         .select("id, name, slug, logo_url")
@@ -35,14 +33,14 @@ export const useUserOrganizations = (userId: string | undefined) => {
       if (orgsError) throw orgsError;
 
       return (orgs || []).map((org) => {
-        const member = members.find((m) => m.organization_id === org.id);
+        const member = members.find((m: any) => m.organization_id === org.id);
         return {
           id: org.id,
           name: org.name,
           slug: org.slug,
           logo_url: org.logo_url,
           role: (member as any)?.role ?? "user",
-          is_owner: member?.is_owner || false,
+          is_owner: (member as any)?.is_owner || false,
         };
       }) as UserOrganization[];
     },
