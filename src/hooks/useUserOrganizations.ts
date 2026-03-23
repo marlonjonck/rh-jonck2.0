@@ -20,8 +20,7 @@ export const useUserOrganizations = (userId: string | undefined) => {
         .from("organization_members")
         .select(`
           is_owner,
-          role_id,
-          roles:role_id ( slug ),
+          role,
           organizations:organization_id (
             id,
             name,
@@ -41,7 +40,7 @@ export const useUserOrganizations = (userId: string | undefined) => {
           name: (item.organizations as any).name,
           slug: (item.organizations as any).slug,
           logo_url: (item.organizations as any).logo_url,
-          role: (item.roles as any)?.slug ?? "user",
+          role: (item as any).role ?? "user",
           is_owner: item.is_owner || false,
         })) as UserOrganization[];
     },
