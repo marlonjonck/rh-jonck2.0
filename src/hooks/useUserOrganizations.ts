@@ -16,33 +16,35 @@ export const useUserOrganizations = (userId: string | undefined) => {
     queryFn: async () => {
       if (!userId) return [];
 
-      const { data, error } = await supabase
+      // Step 1: get organization_ids for this user
+      const { data: members, error: membersError } = await supabase
         .from("organization_members")
-        .select(`
-          is_owner,
-          role,
-          organizations:organization_id (
-            id,
-            name,
-            slug,
-            logo_url
-          )
-        `)
+        .select("organization_id, is_owner, role")
         .eq("user_id", userId);
 
-      if (error) throw error;
+      if (membersError) throw membersError;
+      if (!members || members.length === 0) return [];
 
-      // Transform the data to flatten organization info
-      return (data || [])
-        .filter((item) => item.organizations)
-        .map((item) => ({
-          id: (item.organizations as any).id,
-          name: (item.organizations as any).name,
-          slug: (item.organizations as any).slug,
-          logo_url: (item.organizations as any).logo_url,
-          role: (item as any).role ?? "user",
-          is_owner: item.is_owner || false,
-        })) as UserOrganization[];
+      // Step 2: get organization details
+      const orgIds = members.map((m) => m.organization_id);
+      const { data: orgs, error: orgsError } = await supabase
+        .from("organizations")
+        .select("id, name, slug, logo_url")
+        .in("id", orgIds);
+
+      if (orgsError) throw orgsError;
+
+      return (orgs || []).map((org) => {
+        const member = members.find((m) => m.organization_id === org.id);
+        return {
+          id: org.id,
+          name: org.name,
+          slug: org.slug,
+          logo_url: org.logo_url,
+          role: (member as any)?.role ?? "user",
+          is_owner: member?.is_owner || false,
+        };
+      }) as UserOrganization[];
     },
     enabled: !!userId,
   });
