@@ -29,14 +29,12 @@ import { useUserRole } from "@/hooks/useUserRole";
 import { useUserOrganizations } from "@/hooks/useUserOrganizations";
 import {
   Package,
-  
   Users,
   Building2,
   Briefcase,
   ClipboardList,
   Heart,
   UserMinus,
-  Palmtree,
   Archive,
   DollarSign,
   Target,
@@ -46,7 +44,6 @@ import {
   ChevronDown,
   Search,
   ChevronRight,
-  Clock,
   LogOut,
   Check,
   LayoutDashboard,
@@ -57,6 +54,7 @@ import {
   Shield,
   Eye,
   EyeOff,
+  FileText,
   type LucideIcon,
 } from "lucide-react";
 
@@ -83,8 +81,6 @@ const menuGroups: MenuGroup[] = [
       { icon: Brain, label: "Profiler", href: "/profiler-intro" },
       { icon: TrendingUp, label: "Meu PDI", href: "/my-pdis" },
       { icon: Target, label: "Minhas Avaliações", href: "/my-evaluations" },
-      { icon: Palmtree, label: "Minhas Férias", href: "/time-off", hideFor: ["admin", "people"] },
-      { icon: Clock, label: "Meu Ponto", href: "/time-tracking", hideFor: ["admin", "people"] },
     ],
   },
   {
@@ -107,9 +103,7 @@ const menuGroups: MenuGroup[] = [
     items: [
       { icon: Target, label: "Avaliação de Desempenho", href: "/performance-evaluation" },
       { icon: MessageSquare, label: "Feedbacks", href: "/feedbacks" },
-      { icon: Palmtree, label: "Gestão de Férias", href: "/time-off" },
       { icon: Heart, label: "Cultura", href: "/culture" },
-      { icon: Clock, label: "Gestão de Ponto", href: "/time-tracking" },
     ],
   },
   {
@@ -122,7 +116,8 @@ const menuGroups: MenuGroup[] = [
       { icon: Plug, label: "Integrações", href: "/company-settings/integrations" },
       { icon: Shield, label: "Gestão de Acessos", href: "/access-management" },
       { icon: DollarSign, label: "Custos", href: "/company-costs" },
-      { icon: Package, label: "Inventário", href: "/" },
+      { icon: FileText, label: "Folha de Pagamento", href: "/payroll" },
+      { icon: Package, label: "Inventário", href: "/devices" },
     ],
   },
 ];

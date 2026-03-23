@@ -39,7 +39,6 @@ const CompanyCosts = lazy(() => import("./pages/CompanyCosts"));
 const CompanySettings = lazy(() => import("./pages/CompanySettings"));
 const Culture = lazy(() => import("./pages/Culture"));
 const Terminations = lazy(() => import("./pages/Terminations"));
-const TimeOff = lazy(() => import("./pages/TimeOff"));
 const TalentBank = lazy(() => import("./pages/TalentBank"));
 const TalentBankApplication = lazy(() => import("./pages/TalentBankApplication"));
 const Vagas = lazy(() => import("./pages/Vagas"));
@@ -65,7 +64,8 @@ const PendingInvites = lazy(() => import("./pages/PendingInvites"));
 const AccessManagement = lazy(() => import("./pages/AccessManagement"));
 const ThemeEditor = lazy(() => import("./pages/ThemeEditor"));
 const MyPdis = lazy(() => import("./pages/MyPdis"));
-const TimeTracking = lazy(() => import("./pages/TimeTracking"));
+const Payroll = lazy(() => import("./pages/Payroll"));
+const Devices = lazy(() => import("./pages/Devices"));
 const EvaluationAnswerPage = lazy(() => import("./pages/EvaluationAnswerPage"));
 const EvaluationResultPage = lazy(() => import("./pages/EvaluationResultPage"));
 
@@ -160,7 +160,6 @@ const App = () => (
             <Route path="/import-csv" element={<ImportCSV />} />
             <Route path="/culture" element={<Culture />} />
             <Route path="/terminations" element={<Terminations />} />
-            <Route path="/time-off" element={<TimeOff />} />
             <Route path="/talent-bank" element={<TalentBank />} />
             <Route path="/vagas" element={<Vagas />} />
             <Route path="/vagas/:id" element={<JobDetailPage />} />
@@ -169,13 +168,14 @@ const App = () => (
             <Route path="/my-evaluations/:cycleId/:participantId" element={<EvaluationAnswerPage />} />
             <Route path="/my-evaluations/received/:cycleId" element={<EvaluationResultPage />} />
             <Route path="/theme-editor" element={<ThemeEditor />} />
-            <Route path="/time-tracking" element={<TimeTracking />} />
 
             {/* People-only routes */}
             <Route path="/people-analytics" element={<PeopleRoute><PeopleAnalytics /></PeopleRoute>} />
             <Route path="/organogram" element={<PeopleRoute><Organogram /></PeopleRoute>} />
             <Route path="/import-employees" element={<PeopleRoute><ImportEmployees /></PeopleRoute>} />
             <Route path="/company-costs" element={<PeopleRoute><CompanyCosts /></PeopleRoute>} />
+            <Route path="/payroll" element={<PeopleRoute><Payroll /></PeopleRoute>} />
+            <Route path="/devices" element={<PeopleRoute><Devices /></PeopleRoute>} />
             <Route path="/company-settings" element={<PeopleRoute><CompanySettings /></PeopleRoute>} />
             <Route path="/company-settings/integrations" element={<PeopleRoute><IntegrationsSettings /></PeopleRoute>} />
             <Route path="/skills-management" element={<PeopleRoute><SkillsManagement /></PeopleRoute>} />
